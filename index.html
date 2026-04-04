@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LenSP | STANDOFF 2</title>
+    <!-- Шрифты и иконки -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0f1e;
+            color: #eef;
+            line-height: 1.5;
+        }
+
+        /* градиентный фон */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, #1a2a3a, #0a0f1e);
+            z-index: -2;
+        }
+
+        /* контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* шапка */
+        header {
+            padding: 30px 0 20px;
+            border-bottom: 2px solid #ff7b2c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #ff7b2c;
+        }
+
+        .tagline {
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+
+        /* навигация */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #eef;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: #ff7b2c;
+        }
+
+        /* секции */
+        .section {
+            display: none;
+            margin: 40px 0 60px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active-section {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            border-left: 5px solid #ff7b2c;
+            padding-left: 20px;
+        }
+
+        /* карточки игроков */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+
+        .player-card {
+            background: #111722;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #2a3440;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff7b2c;
+        }
+
+        .player-avatar {
+            width: 120px;
+            height: 120px;
+            background: #2a3a4a;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #ff7b2c;
+        }
+
+        .player-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .player-role {
+            color: #ff7b2c;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        /* магазин */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: #111722;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #2a3440;
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ff7b2c;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .product-price {
+            color: #ff7b2c;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .btn-buy {
+            background: #ff7b2c;
+            border: none;
+            color: #0a0f1e;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-buy:hover {
+            background: #ff9a55;
+            transform: scale(1.02);
+        }
+
+        /* новости */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .news-item {
+            background: #111722;
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 4px solid #ff7b2c;
+        }
+
+        .news-date {
+            color: #ff7b2c;
+            font-size: 0.8rem;
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 8px 0;
+        }
+
+        /* таблица результатов */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #111722;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .results-table th, .results-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #2a3440;
+        }
+
+        .results-table th {
+            background: #1e2a36;
+            color: #ff7b2c;
+        }
+
+        .win {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .loss {
+            color: #e74c3c;
+        }
+
+        /* футер */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #2a3440;
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 15px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="container">
+    <header>
+        <div class="logo">
+            <h1>LenSP <span>| STANDOFF 2</span></h1>
+            <div class="tagline">#ROCK THE GAME</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a class="nav-link active" data-tab="team">Составы</a></li>
+                <li><a class="nav-link" data-tab="shop">Магазин</a></li>
+                <li><a class="nav-link" data-tab="news">Новости</a></li>
+                <li><a class="nav-link" data-tab="results">Результаты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- РАЗДЕЛ: СОСТАВЫ -->
+    <div id="team" class="section active-section">
+        <h2><i class="fas fa-users"></i> Основной состав</h2>
+        <div class="team-grid">
+            <div class="player-card">
+                <div class="player-avatar"><i class="fas fa-user-secret"></i></div>
+                <div class="player-name">H1T_M4N</div>
+                <div class="player-role">Капитан / Снайпер</div>
+                <div class="player-stats">⭐ KD 2.1 | 300+ часов</div>
+            </div>
+            <div class="player-card">
+                <div class="player-avatar"><i class="fas fa-skull"></i></div>
+                <div class="player-name">GH0ST_R1P</div>
+                <div class="player-role">Луркер</div>
+                <div class="player-stats">🔥 Клатчи | 280+ побед</div>
+            </div>
+            <div class="player-card">
+                <div class="player-avatar"><i class="fas fa-bolt"></i></div>
+                <div class="player-name">QU1CK_SCOPE</div>
+                <div class="player-role">Рифлер</div>
+                <div class="player-stats">🎯 34% хедшотов</div>
+            </div>
+            <div class="player-card">
+                <div class="player-avatar"><i class="fas fa-shield-alt"></i></div>
+                <div class="player-name">FR0ST_GG</div>
+                <div class="player-role">Суппорт</div>
+                <div class="player-stats">💊 200+ сейвов</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- РАЗДЕЛ: МАГАЗИН -->
+    <div id="shop" class="section">
+        <h2><i class="fas fa-store"></i> Мерч LenSP</h2>
+        <div class="shop-grid">
+            <div class="product-card">
+                <div class="product-icon"><i class="fas fa-tshirt"></i></div>
+                <div class="product-title">Футболка LENSP</div>
+                <div class="product-price">1 990 ₽</div>
+                <button class="btn-buy" onclick="alert('Демо: товар добавлен в корзину. Скоро запуск магазина!')">Купить</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon"><i class="fas fa-hoodie"></i></div>
+                <div class="product-title">Худи киберспорт</div>
+                <div class="product-price">3 490 ₽</div>
+                <button class="btn-buy" onclick="alert('Демо: товар добавлен в корзину. Скоро запуск магазина!')">Купить</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon"><i class="fas fa-hat-cowboy"></i></div>
+                <div class="product-title">Кепка LenSP</div>
+                <div class="product-price">990 ₽</div>
+                <button class="btn-buy" onclick="alert('Демо: товар добавлен в корзину. Скоро запуск магазина!')">Купить</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon"><i class="fas fa-sticker-mule"></i></div>
+                <div class="product-title">Стикер-пак</div>
+                <div class="product-price">299 ₽</div>
+                <button class="btn-buy" onclick="alert('Демо: товар добавлен в корзину. Скоро запуск магазина!')">Купить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- РАЗДЕЛ: НОВОСТИ -->
+    <div id="news" class="section">
+        <h2><i class="fas fa-newspaper"></i> Последние новости</h2>
+        <div class="news-list">
+            <div class="news-item">
+                <div class="news-date">5 апреля 2025</div>
+                <div class="news-title">LenSP подписывает нового игрока — QU1CK_SCOPE!</div>
+                <div class="news-text">Присоединяйтесь к нам в новом сезоне. Ждите ярких моментов на турнирах.</div>
+            </div>
+            <div class="news-item">
+                <div class="news-date">30 марта 2025</div>
+                <div class="news-title">Победители недельного ладдера STANDOFF 2</div>
+                <div class="news-text">Наша команда заняла 2-е место на турнире «Firestorm Cup».</div>
+            </div>
+            <div class="news-item">
+                <div class="news-date">22 марта 2025</div>
+                <div class="news-title">Открыт предзаказ на новую коллекцию мерча!</div>
+                <div class="news-text">Только до 15 апреля скидка 15% на худи.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- РАЗДЕЛ: РЕЗУЛЬТАТЫ -->
+    <div id="results" class="section">
+        <h2><i class="fas fa-trophy"></i> Результаты матчей</h2>
+        <table class="results-table">
+            <thead>
+                <tr><th>Дата</th><th>Соперник</th><th>Счёт</th><th>Итог</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>02.04.2025</td><td>Dark Wolves</td><td>13 : 9</td><td class="win">Победа</td></tr>
+                <tr><td>28.03.2025</td><td>Phoenix Rising</td><td>10 : 13</td><td class="loss">Поражение</td></tr>
+                <tr><td>21.03.2025</td><td>Royal Squad</td><td>16 : 14</td><td class="win">Победа</td></tr>
+                <tr><td>15.03.2025</td><td>NoName eSports</td><td>12 : 12</td><td>Ничья</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>© 2025 LenSP. Все права защищены. <i class="fab fa-discord"></i> <i class="fab fa-telegram"></i> <i class="fab fa-twitch"></i></p>
+    </footer>
+</div>
+
+<script>
+    // Переключение вкладок
+    const links = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+
+    function switchTab(tabId) {
+        sections.forEach(section => {
+            section.classList.remove('active-section');
+        });
+        const activeSection = document.getElementById(tabId);
+        if (activeSection) activeSection.classList.add('active-section');
+        
+        links.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-tab') === tabId) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tabId = link.getAttribute('data-tab');
+            switchTab(tabId);
+            // плавный скролл вверх
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+</script>
+</body>
+</html>
