@@ -13,28 +13,30 @@
             box-sizing: border-box;
         }
 
-        /* Переменные — чёрно-белая основа */
+        /* Переменные — красивый тёмный фон и чисто белая светлая тема */
         :root {
-            --bg-dark: #000000;
+            --bg-dark-start: #0a0c12;
+            --bg-dark-end: #141824;
             --bg-light: #ffffff;
-            --surface-dark: rgba(20, 20, 20, 0.85);
-            --surface-light: rgba(245, 245, 245, 0.9);
+            --surface-dark: rgba(20, 24, 32, 0.75);
+            --surface-light: rgba(245, 245, 250, 0.9);
             --text-dark-primary: #ffffff;
-            --text-dark-secondary: #aaaaaa;
+            --text-dark-secondary: #b0b8c5;
             --text-light-primary: #111111;
             --text-light-secondary: #444444;
-            --border-dark: #2a2a2a;
-            --border-light: #dddddd;
+            --border-dark: rgba(255,255,255,0.1);
+            --border-light: rgba(0,0,0,0.1);
             --accent-dark: #ffffff;
             --accent-light: #000000;
-            --progress-bg-dark: #2a2a2a;
+            --progress-bg-dark: #2a2e3a;
             --progress-fill-dark: #ffffff;
             --progress-bg-light: #e0e0e0;
             --progress-fill-light: #000000;
         }
 
         body {
-            background: var(--bg-dark);
+            background: linear-gradient(135deg, var(--bg-dark-start), var(--bg-dark-end));
+            background-attachment: fixed;
             font-family: 'Inter', sans-serif;
             color: var(--text-dark-primary);
             transition: background 0.3s ease, color 0.2s ease;
@@ -45,13 +47,26 @@
             color: var(--text-light-primary);
         }
 
+        /* лёгкая текстура для атмосферы (опционально, можно убрать) */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 4px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .container {
+            position: relative;
+            z-index: 2;
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* шапка */
         header {
             padding: 32px 0 24px;
             border-bottom: 1px solid var(--border-dark);
@@ -59,13 +74,20 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            background: rgba(10, 12, 18, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 0 0 32px 32px;
+            margin-top: -8px;
+            padding-left: 28px;
+            padding-right: 28px;
         }
         body.light header {
             border-bottom-color: var(--border-light);
+            background: rgba(255,255,255,0.7);
         }
 
         .logo h1 {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
@@ -77,10 +99,10 @@
             color: var(--text-light-secondary);
         }
         .tagline {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
             color: var(--text-dark-secondary);
-            letter-spacing: 1px;
-            margin-top: 6px;
+            margin-top: 4px;
         }
         body.light .tagline {
             color: var(--text-light-secondary);
@@ -90,11 +112,12 @@
             background: var(--surface-dark);
             border: 1px solid var(--border-dark);
             color: var(--text-dark-primary);
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: 40px;
             cursor: pointer;
             transition: 0.2s;
             font-weight: 500;
+            backdrop-filter: blur(4px);
         }
         body.light .theme-toggle {
             background: var(--surface-light);
@@ -103,6 +126,7 @@
         }
         .theme-toggle:hover {
             opacity: 0.8;
+            transform: scale(0.97);
         }
 
         nav ul {
@@ -116,7 +140,7 @@
             font-weight: 500;
             font-size: 1rem;
             transition: 0.2s;
-            cursor: pointer;
+            padding-bottom: 6px;
         }
         body.light nav a {
             color: var(--text-light-secondary);
@@ -124,7 +148,6 @@
         nav a:hover, nav a.active {
             color: var(--text-dark-primary);
             border-bottom: 2px solid var(--accent-dark);
-            padding-bottom: 4px;
         }
         body.light nav a:hover, body.light nav a.active {
             color: var(--text-light-primary);
@@ -134,32 +157,33 @@
         .section {
             display: none;
             margin: 48px 0 80px;
-            animation: fade 0.35s ease;
+            animation: fadeUp 0.4s ease;
         }
         .section.active-section {
             display: block;
         }
-        @keyframes fade {
-            from { opacity: 0; transform: translateY(12px);}
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(15px);}
             to { opacity: 1; transform: translateY(0);}
         }
 
         h2 {
             font-size: 1.8rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 32px;
             border-left: 3px solid var(--accent-dark);
-            padding-left: 20px;
+            padding-left: 24px;
         }
         body.light h2 {
             border-left-color: var(--accent-light);
         }
 
-        /* карточки */
+        /* карточки — стеклянные */
         .player-card, .product-card, .news-item, .discipline-card, .social-card {
             background: var(--surface-dark);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-dark);
-            border-radius: 24px;
+            border-radius: 28px;
             transition: all 0.3s ease;
             opacity: 0;
             transform: translateY(20px);
@@ -175,7 +199,7 @@
             transform: translateY(0);
         }
         .player-card:hover, .product-card:hover, .social-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
             border-color: var(--accent-dark);
         }
         body.light .player-card:hover, body.light .product-card:hover, body.light .social-card:hover {
@@ -190,17 +214,17 @@
             width: 100px;
             height: 100px;
             margin: 0 auto 18px;
-            background: #1e1e1e;
+            background: #1a1e2a;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.8rem;
             color: #dddddd;
-            border: 1px solid #3a3a3a;
+            border: 1px solid #2a2e3a;
         }
         body.light .player-avatar {
-            background: #e0e0e0;
+            background: #e0e0e8;
             border-color: #ccc;
             color: #111;
         }
@@ -246,7 +270,7 @@
             font-size: 1.2rem;
         }
         .btn-buy {
-            background: var(--surface-dark);
+            background: rgba(30,34,44,0.8);
             border: 1px solid var(--border-dark);
             color: var(--text-dark-primary);
             padding: 8px 24px;
@@ -256,7 +280,7 @@
             transition: 0.2s;
         }
         body.light .btn-buy {
-            background: var(--surface-light);
+            background: rgba(220,220,230,0.8);
             border-color: var(--border-light);
             color: var(--text-light-primary);
         }
@@ -295,7 +319,8 @@
             width: 100%;
             border-collapse: collapse;
             background: var(--surface-dark);
-            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
             overflow: hidden;
         }
         body.light .results-table {
@@ -310,11 +335,11 @@
             border-bottom-color: var(--border-light);
         }
         .results-table th {
-            background: #1a1a1a;
+            background: #1a1e2a;
             font-weight: 600;
         }
         body.light .results-table th {
-            background: #eaeaea;
+            background: #e0e0e8;
         }
         .win { color: #6fcf97; font-weight: 600; }
         .loss { color: #e67e7e; }
@@ -352,7 +377,7 @@
             max-width: 800px;
             margin: 0 auto;
             overflow: hidden;
-            border-radius: 24px;
+            border-radius: 28px;
         }
         .carousel-inner {
             display: flex;
@@ -368,6 +393,7 @@
             top: 50%;
             transform: translateY(-50%);
             background: var(--surface-dark);
+            backdrop-filter: blur(8px);
             border: 1px solid var(--border-dark);
             color: var(--text-dark-primary);
             width: 40px;
@@ -450,11 +476,12 @@
     </style>
 </head>
 <body>
+<div class="noise"></div>
 <div class="container">
     <header>
         <div>
             <div class="logo"><h1>LEGENDS <span>ESPORTS</span></h1></div>
-            <div class="tagline">// STANDOFF 2 // DISCIPLINE & HONOR</div>
+            <div class="tagline">// STANDOFF 2 // ELITE GAMING</div>
         </div>
         <button class="theme-toggle" id="themeToggle">☀️ Светлая тема</button>
     </header>
@@ -537,9 +564,9 @@
         <h2>▸ галерея моментов</h2>
         <div class="carousel">
             <div class="carousel-inner">
-                <img src="https://placehold.co/1000x500/1a1a2e/white?text=Момент+1" alt="moment1">
-                <img src="https://placehold.co/1000x500/1a1a2e/white?text=Момент+2" alt="moment2">
-                <img src="https://placehold.co/1000x500/1a1a2e/white?text=Момент+3" alt="moment3">
+                <img src="https://placehold.co/1000x500/1a1e2a/white?text=Момент+1" alt="moment1">
+                <img src="https://placehold.co/1000x500/1a1e2a/white?text=Момент+2" alt="moment2">
+                <img src="https://placehold.co/1000x500/1a1e2a/white?text=Момент+3" alt="moment3">
             </div>
             <button class="carousel-btn prev">‹</button>
             <button class="carousel-btn next">›</button>
@@ -624,9 +651,9 @@
         themeToggle.textContent = isLight ? '🌙 Тёмная тема' : '☀️ Светлая тема';
         const imgs = document.querySelectorAll('.carousel-inner img');
         if(isLight) {
-            imgs.forEach(img => { if(img.src.includes('placehold.co')) img.src = img.src.replace('1a1a2e', 'f0f0f5').replace('white', '111'); });
+            imgs.forEach(img => { if(img.src.includes('placehold.co')) img.src = img.src.replace('1a1e2a', 'f0f0f5').replace('white', '111'); });
         } else {
-            imgs.forEach(img => { if(img.src.includes('placehold.co')) img.src = img.src.replace('f0f0f5', '1a1a2e').replace('111', 'white'); });
+            imgs.forEach(img => { if(img.src.includes('placehold.co')) img.src = img.src.replace('f0f0f5', '1a1e2a').replace('111', 'white'); });
         }
     });
 </script>
