@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Legends eSports | STANDOFF 2 — стиль и мощь</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legends eSports | STANDOFF 2</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,500;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -13,337 +13,350 @@
             box-sizing: border-box;
         }
 
-        /* Переменные — чистая тёмная и чистая светлая темы */
+        /* Переменные — чёрно-белая основа */
         :root {
-            --bg-gradient-start: #050505;
-            --bg-gradient-end: #0f0f12;
-            --surface: rgba(12, 12, 16, 0.75);
-            --surface-solid: #0c0c10;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0c0;
-            --border: rgba(255,255,255,0.08);
-            --border-hover: rgba(255,255,255,0.3);
-            --accent: #ffffff;
-            --accent-glow: 0 0 8px rgba(255,255,255,0.4);
-            --card-shadow: 0 20px 35px -15px rgba(0,0,0,0.5);
-            --btn-bg: rgba(30,30,40,0.8);
-            --btn-hover: rgba(50,50,65,0.9);
-            --progress-bg: rgba(255,255,255,0.15);
-            --progress-fill: #ffffff;
-        }
-
-        body.light {
-            --bg-gradient-start: #fefefe;
-            --bg-gradient-end: #eaeef5;
-            --surface: rgba(255,255,255,0.85);
-            --surface-solid: #ffffff;
-            --text-primary: #0a0a0e;
-            --text-secondary: #3a3a4a;
-            --border: rgba(0,0,0,0.08);
-            --border-hover: rgba(0,0,0,0.2);
-            --accent: #111;
-            --accent-glow: 0 0 5px rgba(0,0,0,0.1);
-            --card-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
-            --btn-bg: rgba(230,230,240,0.8);
-            --btn-hover: rgba(200,200,215,0.9);
-            --progress-bg: rgba(0,0,0,0.1);
-            --progress-fill: #1a1a2e;
+            --bg-dark: #000000;
+            --bg-light: #ffffff;
+            --surface-dark: rgba(20, 20, 20, 0.85);
+            --surface-light: rgba(245, 245, 245, 0.9);
+            --text-dark-primary: #ffffff;
+            --text-dark-secondary: #aaaaaa;
+            --text-light-primary: #111111;
+            --text-light-secondary: #444444;
+            --border-dark: #2a2a2a;
+            --border-light: #dddddd;
+            --accent-dark: #ffffff;
+            --accent-light: #000000;
+            --progress-bg-dark: #2a2a2a;
+            --progress-fill-dark: #ffffff;
+            --progress-bg-light: #e0e0e0;
+            --progress-fill-light: #000000;
         }
 
         body {
-            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
-            background-attachment: fixed;
+            background: var(--bg-dark);
             font-family: 'Inter', sans-serif;
-            color: var(--text-primary);
-            line-height: 1.5;
+            color: var(--text-dark-primary);
             transition: background 0.3s ease, color 0.2s ease;
         }
 
-        /* анимированные частицы / шум (очень лёгкий) */
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 4px);
-            pointer-events: none;
-            z-index: 0;
+        body.light {
+            background: var(--bg-light);
+            color: var(--text-light-primary);
         }
 
         .container {
-            position: relative;
-            z-index: 2;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 28px;
+            padding: 0 24px;
         }
 
-        /* стеклянная шапка */
+        /* шапка */
         header {
-            padding: 28px 0 20px;
+            padding: 32px 0 24px;
+            border-bottom: 1px solid var(--border-dark);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(12px);
-            background: var(--surface);
-            margin-bottom: 16px;
-            border-radius: 0 0 32px 32px;
-            margin-top: -8px;
-            padding-left: 20px;
-            padding-right: 20px;
+        }
+        body.light header {
+            border-bottom-color: var(--border-light);
         }
 
         .logo h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #fff, #aaa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        body.light .logo h1 {
-            background: linear-gradient(135deg, #111, #444);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
         }
         .logo span {
             font-weight: 400;
-            color: var(--text-secondary);
+            color: var(--text-dark-secondary);
+        }
+        body.light .logo span {
+            color: var(--text-light-secondary);
         }
         .tagline {
-            font-size: 0.7rem;
-            letter-spacing: 1.5px;
-            color: var(--text-secondary);
-            margin-top: 4px;
+            font-size: 0.75rem;
+            color: var(--text-dark-secondary);
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+        body.light .tagline {
+            color: var(--text-light-secondary);
         }
 
         .theme-toggle {
-            background: var(--btn-bg);
-            backdrop-filter: blur(4px);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            font-size: 0.9rem;
+            background: var(--surface-dark);
+            border: 1px solid var(--border-dark);
+            color: var(--text-dark-primary);
             padding: 8px 18px;
             border-radius: 40px;
             cursor: pointer;
             transition: 0.2s;
             font-weight: 500;
         }
+        body.light .theme-toggle {
+            background: var(--surface-light);
+            border-color: var(--border-light);
+            color: var(--text-light-primary);
+        }
         .theme-toggle:hover {
-            background: var(--btn-hover);
-            border-color: var(--border-hover);
-            transform: scale(0.97);
+            opacity: 0.8;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 28px;
+            gap: 32px;
         }
         nav a {
-            color: var(--text-secondary);
+            color: var(--text-dark-secondary);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: 0.2s;
-            letter-spacing: 0.3px;
-            padding-bottom: 6px;
+            cursor: pointer;
+        }
+        body.light nav a {
+            color: var(--text-light-secondary);
         }
         nav a:hover, nav a.active {
-            color: var(--text-primary);
-            border-bottom: 2px solid var(--text-primary);
-            text-shadow: var(--accent-glow);
+            color: var(--text-dark-primary);
+            border-bottom: 2px solid var(--accent-dark);
+            padding-bottom: 4px;
+        }
+        body.light nav a:hover, body.light nav a.active {
+            color: var(--text-light-primary);
+            border-bottom-color: var(--accent-light);
         }
 
         .section {
             display: none;
-            margin: 50px 0 80px;
-            animation: fadeUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            margin: 48px 0 80px;
+            animation: fade 0.35s ease;
         }
         .section.active-section {
             display: block;
         }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px);}
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(12px);}
             to { opacity: 1; transform: translateY(0);}
         }
 
         h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 36px;
-            letter-spacing: -0.5px;
-            display: inline-block;
-            border-left: 4px solid var(--text-primary);
-            padding-left: 24px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            border-left: 3px solid var(--accent-dark);
+            padding-left: 20px;
+        }
+        body.light h2 {
+            border-left-color: var(--accent-light);
         }
 
-        /* карточки — шикарное стекло */
+        /* карточки */
         .player-card, .product-card, .news-item, .discipline-card, .social-card {
-            background: var(--surface);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 32px;
-            transition: all 0.35s ease;
+            background: var(--surface-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 24px;
+            transition: all 0.3s ease;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
         }
-        .player-card.visible, .product-card.visible, .news-item.visible, .discipline-card.visible, .social-card.visible {
+        body.light .player-card, body.light .product-card, body.light .news-item,
+        body.light .discipline-card, body.light .social-card {
+            background: var(--surface-light);
+            border-color: var(--border-light);
+        }
+        .player-card.visible, .product-card.visible, .news-item.visible,
+        .discipline-card.visible, .social-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
         .player-card:hover, .product-card:hover, .social-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--border-hover);
-            box-shadow: var(--card-shadow);
+            transform: translateY(-5px);
+            border-color: var(--accent-dark);
+        }
+        body.light .player-card:hover, body.light .product-card:hover, body.light .social-card:hover {
+            border-color: var(--accent-light);
         }
 
         .player-card {
-            padding: 32px 20px 28px;
+            padding: 28px 16px 24px;
             text-align: center;
         }
         .player-avatar {
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             margin: 0 auto 18px;
-            background: var(--surface-solid);
+            background: #1e1e1e;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
+            font-size: 2.8rem;
+            color: #dddddd;
+            border: 1px solid #3a3a3a;
+        }
+        body.light .player-avatar {
+            background: #e0e0e0;
+            border-color: #ccc;
+            color: #111;
         }
         .player-name {
             font-size: 1.5rem;
-            font-weight: 800;
+            font-weight: 700;
         }
         .player-role {
-            color: var(--text-secondary);
+            color: var(--text-dark-secondary);
             font-weight: 500;
             margin: 8px 0;
         }
+        body.light .player-role {
+            color: var(--text-light-secondary);
+        }
         .player-stats {
             font-size: 0.8rem;
-            color: var(--text-secondary);
-            background: var(--surface);
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 40px;
+            color: var(--text-dark-secondary);
+        }
+        body.light .player-stats {
+            color: var(--text-light-secondary);
         }
 
         .product-card {
-            padding: 28px 16px;
+            padding: 24px 16px;
             text-align: center;
         }
         .product-icon {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 16px;
-            color: var(--text-primary);
+            color: var(--text-dark-primary);
+        }
+        body.light .product-icon {
+            color: var(--text-light-primary);
         }
         .product-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
         }
         .product-price {
-            font-weight: 700;
+            font-weight: 600;
             margin: 12px 0;
-            font-size: 1.3rem;
-            color: var(--text-primary);
+            font-size: 1.2rem;
         }
         .btn-buy {
-            background: var(--btn-bg);
-            backdrop-filter: blur(4px);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            padding: 10px 28px;
+            background: var(--surface-dark);
+            border: 1px solid var(--border-dark);
+            color: var(--text-dark-primary);
+            padding: 8px 24px;
             border-radius: 40px;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
             transition: 0.2s;
-            font-size: 0.85rem;
+        }
+        body.light .btn-buy {
+            background: var(--surface-light);
+            border-color: var(--border-light);
+            color: var(--text-light-primary);
         }
         .btn-buy:hover {
-            background: var(--btn-hover);
-            transform: scale(1.02);
-            border-color: var(--border-hover);
+            opacity: 0.8;
         }
 
-        .news-list { display: flex; flex-direction: column; gap: 24px; }
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
         .news-item {
-            padding: 24px 28px;
-            border-left: 4px solid var(--text-primary);
+            padding: 20px 24px;
+            border-left: 3px solid var(--accent-dark);
+        }
+        body.light .news-item {
+            border-left-color: var(--accent-light);
         }
         .news-date {
             font-size: 0.7rem;
-            color: var(--text-secondary);
+            color: var(--text-dark-secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+        body.light .news-date {
+            color: var(--text-light-secondary);
+        }
         .news-title {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            margin: 8px 0 8px;
+            margin: 8px 0 6px;
         }
 
         .results-table {
             width: 100%;
             border-collapse: collapse;
-            background: var(--surface);
-            backdrop-filter: blur(8px);
-            border-radius: 28px;
+            background: var(--surface-dark);
+            border-radius: 20px;
             overflow: hidden;
         }
+        body.light .results-table {
+            background: var(--surface-light);
+        }
         .results-table th, .results-table td {
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--border);
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-dark);
+        }
+        body.light .results-table th, body.light .results-table td {
+            border-bottom-color: var(--border-light);
         }
         .results-table th {
-            background: var(--surface-solid);
-            font-weight: 700;
+            background: #1a1a1a;
+            font-weight: 600;
+        }
+        body.light .results-table th {
+            background: #eaeaea;
         }
         .win { color: #6fcf97; font-weight: 600; }
         .loss { color: #e67e7e; }
 
-        .progress-group { margin: 24px 0 16px; }
+        .progress-group {
+            margin: 20px 0;
+        }
         .progress-label {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-weight: 500;
+            margin-bottom: 6px;
         }
         .progress-bar {
-            background: var(--progress-bg);
-            border-radius: 40px;
+            background: var(--progress-bg-dark);
+            border-radius: 20px;
             height: 8px;
             overflow: hidden;
         }
+        body.light .progress-bar {
+            background: var(--progress-bg-light);
+        }
         .progress-fill {
-            background: var(--progress-fill);
+            background: var(--progress-fill-dark);
             height: 100%;
             width: 0%;
-            border-radius: 40px;
+            border-radius: 20px;
             transition: width 1s ease;
         }
+        body.light .progress-fill {
+            background: var(--progress-fill-light);
+        }
 
-        /* карусель — крутая */
         .carousel {
             position: relative;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            border-radius: 40px;
             overflow: hidden;
-            box-shadow: var(--card-shadow);
+            border-radius: 24px;
         }
         .carousel-inner {
             display: flex;
-            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1);
+            transition: transform 0.5s ease;
         }
         .carousel-inner img {
             width: 100%;
@@ -354,88 +367,94 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: var(--surface);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            width: 44px;
-            height: 44px;
-            border-radius: 60px;
-            font-size: 1.8rem;
+            background: var(--surface-dark);
+            border: 1px solid var(--border-dark);
+            color: var(--text-dark-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             cursor: pointer;
             transition: 0.2s;
+            font-size: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .carousel-btn:hover {
-            background: var(--btn-hover);
-            border-color: var(--border-hover);
+        body.light .carousel-btn {
+            background: var(--surface-light);
+            border-color: var(--border-light);
+            color: var(--text-light-primary);
         }
-        .prev { left: 20px; }
-        .next { right: 20px; }
+        .carousel-btn:hover {
+            opacity: 0.8;
+        }
+        .prev { left: 15px; }
+        .next { right: 15px; }
 
         .social-grid {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 48px;
+            gap: 40px;
+            margin-top: 20px;
         }
         .social-card {
             width: 220px;
-            padding: 36px 20px;
+            padding: 32px 20px;
             text-align: center;
             cursor: pointer;
         }
         .social-icon {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             margin-bottom: 16px;
         }
         .social-name {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
         footer {
             text-align: center;
             padding: 32px 0 40px;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--border-dark);
             margin-top: 40px;
-            color: var(--text-secondary);
+            color: var(--text-dark-secondary);
+        }
+        body.light footer {
+            border-top-color: var(--border-light);
+            color: var(--text-light-secondary);
         }
         footer i {
             margin: 0 12px;
             cursor: pointer;
             transition: 0.2s;
-            font-size: 1.3rem;
         }
         footer i:hover {
-            color: var(--text-primary);
-            transform: scale(1.1);
+            color: var(--accent-dark);
+        }
+        body.light footer i:hover {
+            color: var(--accent-light);
         }
 
         .team-grid, .shop-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
         }
 
-        @media (max-width: 780px) {
-            .container { padding: 0 20px; }
-            nav ul { gap: 18px; flex-wrap: wrap; justify-content: center; }
-            header { flex-direction: column; text-align: center; gap: 15px; }
-            .social-card { width: 170px; padding: 24px 12px; }
-            h2 { font-size: 1.6rem; }
+        @media (max-width: 680px) {
+            header { flex-direction: column; gap: 16px; text-align: center; }
+            nav ul { gap: 20px; flex-wrap: wrap; justify-content: center; }
+            .social-card { width: 160px; padding: 24px 12px; }
         }
     </style>
 </head>
 <body>
-<div class="noise"></div>
 <div class="container">
     <header>
         <div>
             <div class="logo"><h1>LEGENDS <span>ESPORTS</span></h1></div>
-            <div class="tagline">// STANDOFF 2 // ELITE DISCIPLINE</div>
+            <div class="tagline">// STANDOFF 2 // DISCIPLINE & HONOR</div>
         </div>
         <button class="theme-toggle" id="themeToggle">☀️ Светлая тема</button>
     </header>
@@ -466,10 +485,10 @@
     <div id="shop" class="section">
         <h2>▸ official merch</h2>
         <div class="shop-grid">
-            <div class="product-card"><div class="product-icon"><i class="fas fa-tshirt"></i></div><div class="product-title">Legends T‑shirt</div><div class="product-price">1 990 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Магазин скоро заработает')">ПРЕДЗАКАЗ</button></div>
-            <div class="product-card"><div class="product-icon"><i class="fas fa-hoodie"></i></div><div class="product-title">Legends Hoodie</div><div class="product-price">3 490 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Магазин скоро заработает')">ПРЕДЗАКАЗ</button></div>
-            <div class="product-card"><div class="product-icon"><i class="fas fa-hat-cowboy"></i></div><div class="product-title">Baseball cap</div><div class="product-price">1 290 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Магазин скоро заработает')">ПРЕДЗАКАЗ</button></div>
-            <div class="product-card"><div class="product-icon"><i class="fas fa-stamp"></i></div><div class="product-title">sticker pack</div><div class="product-price">349 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Магазин скоро заработает')">СКОРО</button></div>
+            <div class="product-card"><div class="product-icon"><i class="fas fa-tshirt"></i></div><div class="product-title">Legends T‑shirt</div><div class="product-price">1 990 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину')">ПРЕДЗАКАЗ</button></div>
+            <div class="product-card"><div class="product-icon"><i class="fas fa-hoodie"></i></div><div class="product-title">Legends Hoodie</div><div class="product-price">3 490 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину')">ПРЕДЗАКАЗ</button></div>
+            <div class="product-card"><div class="product-icon"><i class="fas fa-hat-cowboy"></i></div><div class="product-title">Baseball cap</div><div class="product-price">1 290 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину')">ПРЕДЗАКАЗ</button></div>
+            <div class="product-card"><div class="product-icon"><i class="fas fa-stamp"></i></div><div class="product-title">sticker pack</div><div class="product-price">349 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину')">СКОРО</button></div>
         </div>
     </div>
 
@@ -525,7 +544,7 @@
             <button class="carousel-btn prev">‹</button>
             <button class="carousel-btn next">›</button>
         </div>
-        <p style="text-align: center; margin-top: 24px; opacity: 0.8;">Скоро здесь появятся реальные скриншоты и видеонарезки</p>
+        <p style="text-align: center; margin-top: 24px;">Скоро здесь появятся реальные скриншоты</p>
     </div>
 
     <!-- СОЦСЕТИ -->
@@ -583,27 +602,26 @@
     let currentIndex = 0;
     const carouselInner = document.querySelector('.carousel-inner');
     const slides = document.querySelectorAll('.carousel-inner img');
-    const prev = document.querySelector('.carousel-btn.prev');
-    const next = document.querySelector('.carousel-btn.next');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
     function updateCarousel() { if(carouselInner) carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`; }
-    if(prev && next) {
-        prev.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateCarousel(); });
-        next.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slides.length; updateCarousel(); });
+    if(prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateCarousel(); });
+        nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slides.length; updateCarousel(); });
     }
 
-    // Анимация появления
+    // Анимация появления при скролле
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.player-card, .product-card, .news-item, .discipline-card, .social-card').forEach(el => observer.observe(el));
 
-    // Переключение темы (чистый белый фон в светлой теме)
+    // Переключение темы
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('light');
         const isLight = document.body.classList.contains('light');
         themeToggle.textContent = isLight ? '🌙 Тёмная тема' : '☀️ Светлая тема';
-        // Принудительно обновим фон для карусельных заглушек (чтобы они тоже адаптировались)
         const imgs = document.querySelectorAll('.carousel-inner img');
         if(isLight) {
             imgs.forEach(img => { if(img.src.includes('placehold.co')) img.src = img.src.replace('1a1a2e', 'f0f0f5').replace('white', '111'); });
