@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legends eSports | STANDOFF 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Legends eSports | STANDOFF 2 — стиль и мощь</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,500;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -13,208 +13,216 @@
             box-sizing: border-box;
         }
 
-        /* Переменные для тёмной и светлой темы */
+        /* Переменные — чистая тёмная и чистая светлая темы */
         :root {
-            --bg-gradient-start: #0a0a0a;
-            --bg-gradient-end: #1a1a1a;
-            --text-primary: #e0e0e0;
-            --text-secondary: #aaa;
-            --card-bg: rgba(20, 20, 20, 0.6);
-            --card-border: #2c2c2c;
-            --card-hover-border: #5a5a5a;
-            --progress-bg: #2a2a2a;
+            --bg-gradient-start: #050505;
+            --bg-gradient-end: #0f0f12;
+            --surface: rgba(12, 12, 16, 0.75);
+            --surface-solid: #0c0c10;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0c0;
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.3);
+            --accent: #ffffff;
+            --accent-glow: 0 0 8px rgba(255,255,255,0.4);
+            --card-shadow: 0 20px 35px -15px rgba(0,0,0,0.5);
+            --btn-bg: rgba(30,30,40,0.8);
+            --btn-hover: rgba(50,50,65,0.9);
+            --progress-bg: rgba(255,255,255,0.15);
             --progress-fill: #ffffff;
-            --header-border: #2a2a2a;
-            --footer-border: #222;
-            --nav-link: #ccc;
-            --nav-link-hover: white;
-            --table-header-bg: #1a1a1a;
-            --btn-bg: #2c2c2c;
-            --btn-hover-bg: #4a4a4a;
         }
 
         body.light {
-            --bg-gradient-start: #f0f0f0;
-            --bg-gradient-end: #ffffff;
-            --text-primary: #111;
-            --text-secondary: #444;
-            --card-bg: rgba(230, 230, 230, 0.8);
-            --card-border: #ccc;
-            --card-hover-border: #888;
-            --progress-bg: #ddd;
-            --progress-fill: #222;
-            --header-border: #ccc;
-            --footer-border: #ccc;
-            --nav-link: #333;
-            --nav-link-hover: black;
-            --table-header-bg: #e0e0e0;
-            --btn-bg: #ccc;
-            --btn-hover-bg: #aaa;
+            --bg-gradient-start: #fefefe;
+            --bg-gradient-end: #eaeef5;
+            --surface: rgba(255,255,255,0.85);
+            --surface-solid: #ffffff;
+            --text-primary: #0a0a0e;
+            --text-secondary: #3a3a4a;
+            --border: rgba(0,0,0,0.08);
+            --border-hover: rgba(0,0,0,0.2);
+            --accent: #111;
+            --accent-glow: 0 0 5px rgba(0,0,0,0.1);
+            --card-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            --btn-bg: rgba(230,230,240,0.8);
+            --btn-hover: rgba(200,200,215,0.9);
+            --progress-bg: rgba(0,0,0,0.1);
+            --progress-fill: #1a1a2e;
         }
 
         body {
-            background: linear-gradient(-45deg, var(--bg-gradient-start), var(--bg-gradient-end), #0f0f0f, #050505);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            background-attachment: fixed;
             font-family: 'Inter', sans-serif;
             color: var(--text-primary);
             line-height: 1.5;
-            transition: background 0.3s, color 0.3s;
+            transition: background 0.3s ease, color 0.2s ease;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        /* анимированные частицы / шум (очень лёгкий) */
         .noise {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 4px);
+            background: repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 4px);
             pointer-events: none;
-            z-index: -1;
+            z-index: 0;
         }
 
         .container {
+            position: relative;
+            z-index: 2;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 28px;
         }
 
-        /* шапка с кнопкой переключения темы */
+        /* стеклянная шапка */
         header {
-            padding: 32px 0 24px;
-            border-bottom: 1px solid var(--header-border);
+            padding: 28px 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            background: var(--surface);
+            margin-bottom: 16px;
+            border-radius: 0 0 32px 32px;
+            margin-top: -8px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         .logo h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 800;
             letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-
+        body.light .logo h1 {
+            background: linear-gradient(135deg, #111, #444);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
         .logo span {
             font-weight: 400;
             color: var(--text-secondary);
         }
-
         .tagline {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
             color: var(--text-secondary);
-            letter-spacing: 1px;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         .theme-toggle {
             background: var(--btn-bg);
-            border: none;
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border);
             color: var(--text-primary);
-            font-size: 1.2rem;
-            padding: 8px 12px;
-            border-radius: 30px;
+            font-size: 0.9rem;
+            padding: 8px 18px;
+            border-radius: 40px;
             cursor: pointer;
             transition: 0.2s;
+            font-weight: 500;
         }
         .theme-toggle:hover {
-            background: var(--btn-hover-bg);
+            background: var(--btn-hover);
+            border-color: var(--border-hover);
+            transform: scale(0.97);
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 32px;
+            gap: 28px;
         }
-
         nav a {
-            color: var(--nav-link);
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: 0.2s;
-            cursor: pointer;
             letter-spacing: 0.3px;
+            padding-bottom: 6px;
         }
-
         nav a:hover, nav a.active {
-            color: var(--nav-link-hover);
-            border-bottom: 1px solid var(--nav-link-hover);
-            text-shadow: 0 0 4px rgba(255,255,255,0.5);
-            padding-bottom: 4px;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--text-primary);
+            text-shadow: var(--accent-glow);
         }
 
         .section {
             display: none;
-            margin: 48px 0 80px;
-            animation: fade 0.35s ease;
+            margin: 50px 0 80px;
+            animation: fadeUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
-
         .section.active-section {
             display: block;
         }
-
-        @keyframes fade {
-            from { opacity: 0; transform: translateY(12px);}
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px);}
             to { opacity: 1; transform: translateY(0);}
         }
 
         h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 32px;
-            letter-spacing: -0.3px;
-            border-left: 3px solid var(--text-primary);
-            padding-left: 20px;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 36px;
+            letter-spacing: -0.5px;
+            display: inline-block;
+            border-left: 4px solid var(--text-primary);
+            padding-left: 24px;
         }
 
-        /* карточки с эффектом стекла и анимацией появления */
+        /* карточки — шикарное стекло */
         .player-card, .product-card, .news-item, .discipline-card, .social-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            border-radius: 28px;
-            transition: all 0.3s ease;
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            transition: all 0.35s ease;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease, border 0.2s;
+            transform: translateY(30px);
         }
         .player-card.visible, .product-card.visible, .news-item.visible, .discipline-card.visible, .social-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
         .player-card:hover, .product-card:hover, .social-card:hover {
-            border-color: var(--card-hover-border);
-            transform: translateY(-6px);
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+            box-shadow: var(--card-shadow);
         }
 
         .player-card {
-            padding: 28px 16px 24px;
+            padding: 32px 20px 28px;
             text-align: center;
         }
         .player-avatar {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             margin: 0 auto 18px;
-            background: #1e1e1e;
+            background: var(--surface-solid);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.8rem;
-            color: #dddddd;
-            border: 1px solid #3a3a3a;
+            font-size: 3rem;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
         }
         .player-name {
             font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.2px;
+            font-weight: 800;
         }
         .player-role {
             color: var(--text-secondary);
@@ -224,51 +232,53 @@
         .player-stats {
             font-size: 0.8rem;
             color: var(--text-secondary);
+            background: var(--surface);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 40px;
         }
 
         .product-card {
-            padding: 24px 16px;
+            padding: 28px 16px;
             text-align: center;
         }
         .product-icon {
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin-bottom: 16px;
-            color: #ccc;
+            color: var(--text-primary);
         }
         .product-title {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 700;
         }
         .product-price {
-            font-weight: 600;
+            font-weight: 700;
             margin: 12px 0;
+            font-size: 1.3rem;
             color: var(--text-primary);
-            font-size: 1.2rem;
         }
         .btn-buy {
             background: var(--btn-bg);
-            border: none;
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border);
             color: var(--text-primary);
-            padding: 8px 24px;
+            padding: 10px 28px;
             border-radius: 40px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: 0.2s;
             font-size: 0.85rem;
         }
         .btn-buy:hover {
-            background: var(--btn-hover-bg);
+            background: var(--btn-hover);
             transform: scale(1.02);
+            border-color: var(--border-hover);
         }
 
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .news-list { display: flex; flex-direction: column; gap: 24px; }
         .news-item {
-            padding: 20px 24px;
-            border-left: 2px solid var(--progress-fill);
+            padding: 24px 28px;
+            border-left: 4px solid var(--text-primary);
         }
         .news-date {
             font-size: 0.7rem;
@@ -277,44 +287,40 @@
             letter-spacing: 1px;
         }
         .news-title {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin: 8px 0 6px;
+            margin: 8px 0 8px;
         }
 
         .results-table {
             width: 100%;
             border-collapse: collapse;
-            background: var(--card-bg);
-            border-radius: 20px;
+            background: var(--surface);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
             overflow: hidden;
         }
         .results-table th, .results-table td {
-            padding: 14px 18px;
-            text-align: left;
-            border-bottom: 1px solid var(--card-border);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
         }
         .results-table th {
-            background: var(--table-header-bg);
-            font-weight: 600;
-            color: var(--text-primary);
+            background: var(--surface-solid);
+            font-weight: 700;
         }
-        .win { color: #b0ffb0; font-weight: 500; }
-        .loss { color: #ffaeae; }
+        .win { color: #6fcf97; font-weight: 600; }
+        .loss { color: #e67e7e; }
 
-        /* прогресс-бары */
-        .progress-group {
-            margin: 20px 0;
-        }
+        .progress-group { margin: 24px 0 16px; }
         .progress-label {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 6px;
-            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
         .progress-bar {
             background: var(--progress-bg);
-            border-radius: 20px;
+            border-radius: 40px;
             height: 8px;
             overflow: hidden;
         }
@@ -322,100 +328,104 @@
             background: var(--progress-fill);
             height: 100%;
             width: 0%;
-            border-radius: 20px;
+            border-radius: 40px;
             transition: width 1s ease;
         }
 
-        /* карусель */
+        /* карусель — крутая */
         .carousel {
             position: relative;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            border-radius: 40px;
             overflow: hidden;
-            border-radius: 24px;
+            box-shadow: var(--card-shadow);
         }
         .carousel-inner {
             display: flex;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1);
         }
         .carousel-inner img {
             width: 100%;
             flex-shrink: 0;
-            border-radius: 24px;
+            display: block;
         }
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0,0,0,0.6);
-            color: white;
-            border: none;
-            padding: 10px 15px;
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            width: 44px;
+            height: 44px;
+            border-radius: 60px;
+            font-size: 1.8rem;
             cursor: pointer;
-            font-size: 1.5rem;
-            border-radius: 50%;
             transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .carousel-btn:hover {
-            background: rgba(0,0,0,0.9);
+            background: var(--btn-hover);
+            border-color: var(--border-hover);
         }
-        .prev { left: 10px; }
-        .next { right: 10px; }
+        .prev { left: 20px; }
+        .next { right: 20px; }
 
         .social-grid {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 20px;
+            gap: 48px;
         }
         .social-card {
             width: 220px;
-            padding: 32px 20px;
+            padding: 36px 20px;
             text-align: center;
             cursor: pointer;
         }
         .social-icon {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             margin-bottom: 16px;
         }
         .social-name {
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.4rem;
+            font-weight: 700;
         }
 
         footer {
             text-align: center;
             padding: 32px 0 40px;
-            border-top: 1px solid var(--footer-border);
+            border-top: 1px solid var(--border);
             margin-top: 40px;
             color: var(--text-secondary);
-            font-size: 0.8rem;
         }
         footer i {
-            margin: 0 8px;
+            margin: 0 12px;
             cursor: pointer;
             transition: 0.2s;
+            font-size: 1.3rem;
         }
         footer i:hover {
             color: var(--text-primary);
+            transform: scale(1.1);
         }
 
-        @media (max-width: 680px) {
-            header {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
-            nav ul {
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .social-card {
-                width: 160px;
-                padding: 24px 12px;
-            }
+        .team-grid, .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+        }
+
+        @media (max-width: 780px) {
+            .container { padding: 0 20px; }
+            nav ul { gap: 18px; flex-wrap: wrap; justify-content: center; }
+            header { flex-direction: column; text-align: center; gap: 15px; }
+            .social-card { width: 170px; padding: 24px 12px; }
+            h2 { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -425,9 +435,9 @@
     <header>
         <div>
             <div class="logo"><h1>LEGENDS <span>ESPORTS</span></h1></div>
-            <div class="tagline">// STANDOFF 2 // MONOCHROME DISCIPLINE</div>
+            <div class="tagline">// STANDOFF 2 // ELITE DISCIPLINE</div>
         </div>
-        <button class="theme-toggle" id="themeToggle">🌙 Светлая тема</button>
+        <button class="theme-toggle" id="themeToggle">☀️ Светлая тема</button>
     </header>
     <nav>
         <ul>
@@ -444,7 +454,7 @@
     <!-- СОСТАВЫ -->
     <div id="team" class="section active-section">
         <h2>▸ основной состав</h2>
-        <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px;">
+        <div class="team-grid">
             <div class="player-card"><div class="player-avatar"><i class="fas fa-skull"></i></div><div class="player-name">H1T_M4N</div><div class="player-role">CAPTAIN / AWPer</div><div class="player-stats">KD 2.3 · 540 hrs</div></div>
             <div class="player-card"><div class="player-avatar"><i class="fas fa-user-ninja"></i></div><div class="player-name">GH0ST_R1P</div><div class="player-role">LURKER</div><div class="player-stats">1.8 KPR · 300 wins</div></div>
             <div class="player-card"><div class="player-avatar"><i class="fas fa-crosshairs"></i></div><div class="player-name">QU1CK_SCOPE</div><div class="player-role">RIFLER</div><div class="player-stats">32% HS · 1.2 rating</div></div>
@@ -455,11 +465,11 @@
     <!-- МАГАЗИН -->
     <div id="shop" class="section">
         <h2>▸ official merch</h2>
-        <div class="shop-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px;">
-            <div class="product-card"><div class="product-icon"><i class="fas fa-tshirt"></i></div><div class="product-title">Legends T‑shirt</div><div class="product-price">1 990 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Связь с магазином позже')">ПРЕДЗАКАЗ</button></div>
-            <div class="product-card"><div class="product-icon"><i class="fas fa-hoodie"></i></div><div class="product-title">Legends Hoodie</div><div class="product-price">3 490 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Связь с магазином позже')">ПРЕДЗАКАЗ</button></div>
-            <div class="product-card"><div class="product-icon"><i class="fas fa-hat-cowboy"></i></div><div class="product-title">Baseball cap</div><div class="product-price">1 290 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Связь с магазином позже')">ПРЕДЗАКАЗ</button></div>
-            <div class="product-card"><div class="product-icon"><i class="fas fa-stamp"></i></div><div class="product-title">sticker pack</div><div class="product-price">349 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Связь с магазином позже')">СКОРО</button></div>
+        <div class="shop-grid">
+            <div class="product-card"><div class="product-icon"><i class="fas fa-tshirt"></i></div><div class="product-title">Legends T‑shirt</div><div class="product-price">1 990 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Магазин скоро заработает')">ПРЕДЗАКАЗ</button></div>
+            <div class="product-card"><div class="product-icon"><i class="fas fa-hoodie"></i></div><div class="product-title">Legends Hoodie</div><div class="product-price">3 490 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Магазин скоро заработает')">ПРЕДЗАКАЗ</button></div>
+            <div class="product-card"><div class="product-icon"><i class="fas fa-hat-cowboy"></i></div><div class="product-title">Baseball cap</div><div class="product-price">1 290 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Магазин скоро заработает')">ПРЕДЗАКАЗ</button></div>
+            <div class="product-card"><div class="product-icon"><i class="fas fa-stamp"></i></div><div class="product-title">sticker pack</div><div class="product-price">349 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Магазин скоро заработает')">СКОРО</button></div>
         </div>
     </div>
 
@@ -487,75 +497,51 @@
         </table>
     </div>
 
-    <!-- ДИСЦИПЛИНА + ПРОГРЕСС-БАРЫ -->
+    <!-- ДИСЦИПЛИНА -->
     <div id="discipline" class="section">
         <h2>▸ о дисциплине</h2>
         <div class="discipline-content">
             <div class="discipline-card">
                 <h3>STANDOFF 2</h3>
                 <p>Динамичный мобильный шутер от AXLEBOLT. У нас — киберспортивная дисциплина, основанная на командной тактике, реакции и стратегии. Legends eSports участвует в официальных турнирах по STANDOFF 2, включая лиги и кубки.</p>
-                <div class="progress-group">
-                    <div class="progress-label"><span>Сыгранность команды</span><span>78%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 78%;"></div></div>
-                </div>
-                <div class="progress-group">
-                    <div class="progress-label"><span>Подготовка к турниру</span><span>92%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div>
-                </div>
-                <div class="progress-group">
-                    <div class="progress-label"><span>Медиа-активность</span><span>45%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div>
-                </div>
+                <div class="progress-group"><div class="progress-label"><span>Сыгранность команды</span><span>78%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 78%;"></div></div></div>
+                <div class="progress-group"><div class="progress-label"><span>Подготовка к турниру</span><span>92%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div></div>
+                <div class="progress-group"><div class="progress-label"><span>Медиа-активность</span><span>45%</span></div><div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div></div>
             </div>
-            <div class="discipline-card">
-                <h3>Наши достижения</h3>
-                <p>🥈 2 место Firestorm Cup 2025<br>🥉 Топ‑4 Moscow Open 2024<br>🏆 Победители региональной квалификации к PRO Series 2024</p>
-            </div>
-            <div class="discipline-card">
-                <h3>Расписание тренировок</h3>
-                <p>Пн–Пт: 19:00 – 22:00 (МСК) — командные стратегии, разбор демо, микроматчи.</p>
-            </div>
+            <div class="discipline-card"><h3>Наши достижения</h3><p>🥈 2 место Firestorm Cup 2025<br>🥉 Топ‑4 Moscow Open 2024<br>🏆 Победители региональной квалификации к PRO Series 2024</p></div>
+            <div class="discipline-card"><h3>Расписание тренировок</h3><p>Пн–Пт: 19:00 – 22:00 (МСК) — командные стратегии, разбор демо, микроматчи.</p></div>
         </div>
     </div>
 
-    <!-- ГАЛЕРЕЯ (карусель) -->
+    <!-- ГАЛЕРЕЯ -->
     <div id="gallery" class="section">
         <h2>▸ галерея моментов</h2>
         <div class="carousel">
             <div class="carousel-inner">
-                <img src="https://via.placeholder.com/800x400?text=Момент+1" alt="Game moment 1">
-                <img src="https://via.placeholder.com/800x400?text=Момент+2" alt="Game moment 2">
-                <img src="https://via.placeholder.com/800x400?text=Момент+3" alt="Game moment 3">
+                <img src="https://placehold.co/1000x500/1a1a2e/white?text=Момент+1" alt="moment1">
+                <img src="https://placehold.co/1000x500/1a1a2e/white?text=Момент+2" alt="moment2">
+                <img src="https://placehold.co/1000x500/1a1a2e/white?text=Момент+3" alt="moment3">
             </div>
             <button class="carousel-btn prev">‹</button>
             <button class="carousel-btn next">›</button>
         </div>
-        <p style="text-align: center; margin-top: 20px;">Здесь будут скриншоты лучших моментов команды.</p>
+        <p style="text-align: center; margin-top: 24px; opacity: 0.8;">Скоро здесь появятся реальные скриншоты и видеонарезки</p>
     </div>
 
     <!-- СОЦСЕТИ -->
     <div id="social" class="section">
         <h2>▸ наши соцсети</h2>
         <div class="social-grid">
-            <div class="social-card" onclick="window.open('https://vk.ru/lenspso2', '_blank')">
-                <div class="social-icon"><i class="fab fa-vk"></i></div>
-                <div class="social-name">VK</div>
-            </div>
-            <div class="social-card" onclick="window.open('https://t.me/legendsesports', '_blank')">
-                <div class="social-icon"><i class="fab fa-telegram-plane"></i></div>
-                <div class="social-name">TELEGRAM</div>
-            </div>
-            <div class="social-card" onclick="window.open('https://www.tiktok.com/@ryzex_so2?_r=1&_t=ZS-95GQNhBlW8D', '_blank')">
-                <div class="social-icon"><i class="fab fa-tiktok"></i></div>
-                <div class="social-name">TIKTOK</div>
-            </div>
+            <div class="social-card" onclick="window.open('https://vk.ru/lenspso2', '_blank')"><div class="social-icon"><i class="fab fa-vk"></i></div><div class="social-name">VK</div></div>
+            <div class="social-card" onclick="window.open('https://t.me/legendsesports', '_blank')"><div class="social-icon"><i class="fab fa-telegram-plane"></i></div><div class="social-name">TELEGRAM</div></div>
+            <div class="social-card" onclick="window.open('https://www.tiktok.com/@ryzex_so2?_r=1&_t=ZS-95GQNhBlW8D', '_blank')"><div class="social-icon"><i class="fab fa-tiktok"></i></div><div class="social-name">TIKTOK</div></div>
         </div>
     </div>
 
     <footer>
         <p>© 2025 Legends eSports · все права защищены · 
-            <i class="fab fa-discord" onclick="alert('Discord сервер: ссылка скоро')"></i> 
-            <i class="fab fa-twitter" onclick="alert('Twitter профиль')"></i> 
+            <i class="fab fa-discord" onclick="alert('Дискорд сервер: ссылка скоро')"></i> 
+            <i class="fab fa-twitter" onclick="alert('Twitter')"></i> 
             <i class="fab fa-twitch" onclick="alert('Twitch канал')"></i>
         </p>
     </footer>
@@ -573,10 +559,16 @@
             link.classList.remove('active');
             if(link.getAttribute('data-tab') === tabId) link.classList.add('active');
         });
-        // после смены вкладки запускаем анимацию прогресс-баров (если вкладка discipline)
         if(tabId === 'discipline') animateProgressBars();
     }
-
+    function animateProgressBars() {
+        const fills = document.querySelectorAll('.progress-fill');
+        fills.forEach(fill => {
+            const target = fill.style.width;
+            fill.style.width = '0%';
+            setTimeout(() => { fill.style.width = target; }, 100);
+        });
+    }
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -585,63 +577,39 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
-
-    // Анимация прогресс-баров
-    function animateProgressBars() {
-        const fills = document.querySelectorAll('.progress-fill');
-        fills.forEach(fill => {
-            const width = fill.style.width;
-            fill.style.width = '0%';
-            setTimeout(() => {
-                fill.style.width = width;
-            }, 100);
-        });
-    }
-    // если дисциплина видна при загрузке, запустить анимацию
-    if(document.getElementById('discipline').classList.contains('active-section')) {
-        animateProgressBars();
-    }
+    if(document.getElementById('discipline').classList.contains('active-section')) animateProgressBars();
 
     // Карусель
     let currentIndex = 0;
     const carouselInner = document.querySelector('.carousel-inner');
     const slides = document.querySelectorAll('.carousel-inner img');
-    const prevBtn = document.querySelector('.carousel-btn.prev');
-    const nextBtn = document.querySelector('.carousel-btn.next');
-    function updateCarousel() {
-        if(carouselInner) {
-            carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-    }
-    if(prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarousel();
-        });
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel();
-        });
+    const prev = document.querySelector('.carousel-btn.prev');
+    const next = document.querySelector('.carousel-btn.next');
+    function updateCarousel() { if(carouselInner) carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`; }
+    if(prev && next) {
+        prev.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateCarousel(); });
+        next.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slides.length; updateCarousel(); });
     }
 
-    // Анимация появления при скролле (Intersection Observer)
+    // Анимация появления
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.player-card, .product-card, .news-item, .discipline-card, .social-card').forEach(el => {
-        observer.observe(el);
-    });
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+    document.querySelectorAll('.player-card, .product-card, .news-item, .discipline-card, .social-card').forEach(el => observer.observe(el));
 
-    // Переключение тёмной/светлой темы
+    // Переключение темы (чистый белый фон в светлой теме)
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('light');
         const isLight = document.body.classList.contains('light');
         themeToggle.textContent = isLight ? '🌙 Тёмная тема' : '☀️ Светлая тема';
+        // Принудительно обновим фон для карусельных заглушек (чтобы они тоже адаптировались)
+        const imgs = document.querySelectorAll('.carousel-inner img');
+        if(isLight) {
+            imgs.forEach(img => { if(img.src.includes('placehold.co')) img.src = img.src.replace('1a1a2e', 'f0f0f5').replace('white', '111'); });
+        } else {
+            imgs.forEach(img => { if(img.src.includes('placehold.co')) img.src = img.src.replace('f0f0f5', '1a1a2e').replace('111', 'white'); });
+        }
     });
 </script>
 </body>
