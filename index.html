@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LenSP | STANDOFF 2 — монохром</title>
+    <title>Legends eSports | STANDOFF 2</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,500;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -20,7 +20,6 @@
             line-height: 1.5;
         }
 
-        /* градиентная текстура вместо цвета */
         body::before {
             content: "";
             position: fixed;
@@ -49,7 +48,6 @@
             padding: 0 24px;
         }
 
-        /* HEADER */
         header {
             padding: 32px 0 24px;
             border-bottom: 1px solid #2a2a2a;
@@ -99,7 +97,6 @@
             padding-bottom: 4px;
         }
 
-        /* секции */
         .section {
             display: none;
             margin: 48px 0 80px;
@@ -124,7 +121,6 @@
             padding-left: 20px;
         }
 
-        /* карточки игроков */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -178,7 +174,6 @@
             color: #7a7a7a;
         }
 
-        /* магазин */
         .shop-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -233,7 +228,6 @@
             background: #4a4a4a;
         }
 
-        /* новости */
         .news-list {
             display: flex;
             flex-direction: column;
@@ -260,7 +254,6 @@
             margin: 8px 0 6px;
         }
 
-        /* таблица результатов */
         .results-table {
             width: 100%;
             border-collapse: collapse;
@@ -287,6 +280,27 @@
         }
         .loss {
             color: #ffaeae;
+        }
+
+        .discipline-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .discipline-card {
+            background: rgba(18,18,18,0.7);
+            border-radius: 24px;
+            padding: 28px;
+            border: 1px solid #2a2a2a;
+        }
+        .discipline-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .discipline-card p {
+            color: #bdbdbd;
+            line-height: 1.5;
         }
 
         footer {
@@ -320,8 +334,8 @@
 <div class="container">
     <header>
         <div>
-            <div class="logo"><h1>LENSP <span>// STANDOFF 2</span></h1></div>
-            <div class="tagline">MONOCHROME // AIM & DISCIPLINE</div>
+            <div class="logo"><h1>LEGENDS <span>ESPORTS</span></h1></div>
+            <div class="tagline">// STANDOFF 2 // MONOCHROME DISCIPLINE</div>
         </div>
         <nav>
             <ul>
@@ -329,6 +343,7 @@
                 <li><a class="nav-link" data-tab="shop">МАГАЗИН</a></li>
                 <li><a class="nav-link" data-tab="news">НОВОСТИ</a></li>
                 <li><a class="nav-link" data-tab="results">РЕЗУЛЬТАТЫ</a></li>
+                <li><a class="nav-link" data-tab="discipline">ДИСЦИПЛИНА</a></li>
             </ul>
         </nav>
     </header>
@@ -348,8 +363,8 @@
     <div id="shop" class="section">
         <h2>▸ official merch</h2>
         <div class="shop-grid">
-            <div class="product-card"><div class="product-icon"><i class="fas fa-tshirt"></i></div><div class="product-title">Bond T‑shirt</div><div class="product-price">1 990 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Связь с магазином позже')">ПРЕДЗАКАЗ</button></div>
-            <div class="product-card"><div class="product-icon"><i class="fas fa-hoodie"></i></div><div class="product-title">LenSP Hoodie</div><div class="product-price">3 490 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Связь с магазином позже')">ПРЕДЗАКАЗ</button></div>
+            <div class="product-card"><div class="product-icon"><i class="fas fa-tshirt"></i></div><div class="product-title">Legends T‑shirt</div><div class="product-price">1 990 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Связь с магазином позже')">ПРЕДЗАКАЗ</button></div>
+            <div class="product-card"><div class="product-icon"><i class="fas fa-hoodie"></i></div><div class="product-title">Legends Hoodie</div><div class="product-price">3 490 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Связь с магазином позже')">ПРЕДЗАКАЗ</button></div>
             <div class="product-card"><div class="product-icon"><i class="fas fa-hat-cowboy"></i></div><div class="product-title">Baseball cap</div><div class="product-price">1 290 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Связь с магазином позже')">ПРЕДЗАКАЗ</button></div>
             <div class="product-card"><div class="product-icon"><i class="fas fa-stamp"></i></div><div class="product-title">sticker pack</div><div class="product-price">349 ₽</div><button class="btn-buy" onclick="alert('DEMO: товар добавлен в корзину. Связь с магазином позже')">СКОРО</button></div>
         </div>
@@ -359,9 +374,9 @@
     <div id="news" class="section">
         <h2>▸ последние новости</h2>
         <div class="news-list">
-            <div class="news-item"><div class="news-date">05.04.2025</div><div class="news-title">Новый игрок — QU1CK_SCOPE присоединяется к LenSP</div><div class="news-text">Усиление линии рифлеров перед квалификацией на STANDOFF 2 PRO Series.</div></div>
+            <div class="news-item"><div class="news-date">05.04.2025</div><div class="news-title">Новый игрок — QU1CK_SCOPE присоединяется к Legends eSports</div><div class="news-text">Усиление линии рифлеров перед квалификацией на STANDOFF 2 PRO Series.</div></div>
             <div class="news-item"><div class="news-date">28.03.2025</div><div class="news-title">2‑е место на Firestorm Cup</div><div class="news-text">Команда показала отличную командную игру, уступив лишь в финале 13:16.</div></div>
-            <div class="news-item"><div class="news-date">20.03.2025</div><div class="news-title">Анонс мерча — чёрная коллекция</div><div class="news-text">Предзаказ на лимитированную серию одежды LenSP стартует 10 апреля.</div></div>
+            <div class="news-item"><div class="news-date">20.03.2025</div><div class="news-title">Анонс мерча — чёрная коллекция</div><div class="news-text">Предзаказ на лимитированную серию одежды Legends eSports стартует 10 апреля.</div></div>
         </div>
     </div>
 
@@ -379,8 +394,27 @@
         </table>
     </div>
 
+    <!-- ДИСЦИПЛИНА -->
+    <div id="discipline" class="section">
+        <h2>▸ о дисциплине</h2>
+        <div class="discipline-content">
+            <div class="discipline-card">
+                <h3>STANDOFF 2</h3>
+                <p>Динамичный мобильный шутер от AXLEBOLT. У нас — киберспортивная дисциплина, основанная на командной тактике, реакции и стратегии. Legends eSports участвует в официальных турнирах по STANDOFF 2, включая лиги и кубки.</p>
+            </div>
+            <div class="discipline-card">
+                <h3>Наши достижения</h3>
+                <p>🥈 2 место Firestorm Cup 2025<br>🥉 Топ‑4 Moscow Open 2024<br>🏆 Победители региональной квалификации к PRO Series 2024</p>
+            </div>
+            <div class="discipline-card">
+                <h3>Расписание тренировок</h3>
+                <p>Пн–Пт: 19:00 – 22:00 (МСК) — командные стратегии, разбор демо, микроматчи.</p>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>© 2025 LenSP · все права защищены · <i class="fab fa-discord"></i> <i class="fab fa-twitter"></i> <i class="fab fa-twitch"></i></p>
+        <p>© 2025 Legends eSports · все права защищены · <i class="fab fa-discord"></i> <i class="fab fa-twitter"></i> <i class="fab fa-twitch"></i></p>
     </footer>
 </div>
 
