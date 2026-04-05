@@ -107,11 +107,15 @@
             letter-spacing: -0.5px;
             background: linear-gradient(90deg, var(--accent-dark), #4facfe);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
         }
 
         body.light .logo h1 {
-            background: linear-gradient(90deg, var(--accent-light), #0044cc);
+            background: none;
+            color: var(--text-light-primary);
+            -webkit-background-clip: unset;
+            background-clip: unset;
         }
 
         .logo span {
